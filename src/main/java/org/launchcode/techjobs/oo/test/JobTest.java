@@ -5,8 +5,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
 
+import java.util.Objects;
+
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by LaunchCode
@@ -21,12 +24,35 @@ public class JobTest {
         assertNotEquals(job1.getId(), job2.getId());
     }
 
-    // ASSERTTRUE() METHOD IS WHERE I'M AT 10/10/22
     // next test should have 5 assert statements of each type...
     @Test
     public void testJobConstructorSetsAllFields() {
-        new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertTrue(Employer.equals("ACME"));
+        Job job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertTrue(job3.getName() instanceof String);
+        assertEquals(job3.getName(), "Product tester");
+
+        assertTrue(job3.getEmployer() instanceof Employer);
+        assertEquals(job3.getEmployer().getValue(), "ACME");
+
+        assertTrue(job3.getLocation() instanceof Location);
+        assertEquals(job3.getLocation().getValue(), "Desert");
+
+        assertTrue(job3.getPositionType() instanceof PositionType);
+        assertEquals(job3.getPositionType().getValue(), "Quality control");
+
+        assertTrue(job3.getCoreCompetency() instanceof CoreCompetency);
+        assertEquals(job3.getCoreCompetency().getValue(), "Persistence");
+    }
+
+    @Test
+    public void testJobsForEquality() {
+        Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertNotEquals(job4, job5);
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
 
     }
 

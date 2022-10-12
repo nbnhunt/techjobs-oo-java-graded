@@ -51,9 +51,19 @@ public class JobTest {
         assertNotEquals(job4, job5);
     }
 
+    // pass a job object
+    // return a string w/ \n before and after all info
+    // each field gets a label (key) and gets its own line
+    // if a field is empty, method replaces with "Data not available" afte rthe label
+    // BONUS: if ID is the only field, the method should return "OOPS! This job does not seem to exist."
+
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
+        Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
+        assertEquals('\n', job6.toString(job6).charAt(0));
+        assertEquals('\n', job6.toString(job6).charAt(job6.toString(job6).length()-1));
+        //assertEquals(job6.toString().charAt(0), job6.toString().charAt(0));
     }
 
 }

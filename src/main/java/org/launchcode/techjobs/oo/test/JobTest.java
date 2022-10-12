@@ -66,4 +66,33 @@ public class JobTest {
         //assertEquals(job6.toString().charAt(0), job6.toString().charAt(0));
     }
 
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        // labels
+        assertTrue(job7.toString(job7).contains("ID"));
+        assertTrue(job7.toString(job7).contains("Name"));
+        assertTrue(job7.toString(job7).contains("Employer"));
+        assertTrue(job7.toString(job7).contains("Location"));
+        assertTrue(job7.toString(job7).contains("Position Type"));
+        assertTrue(job7.toString(job7).contains("Core Competency"));
+
+        // data
+        assertTrue(job7.toString(job7).contains("Product tester"));
+        assertTrue(job7.toString(job7).contains("ACME"));
+        assertTrue(job7.toString(job7).contains("Desert"));
+        assertTrue(job7.toString(job7).contains("Quality control"));
+        assertTrue(job7.toString(job7).contains("Persistence"));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job8 = new Job("", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertTrue(job8.toString(job8).contains("Data not available"));
+
+
+    }
+
 }

@@ -1,5 +1,7 @@
 package org.launchcode.techjobs.oo;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Job {
@@ -100,7 +102,21 @@ public class Job {
     }
 
     public String toString(Job job) {
-        String returnedJob = "\n" + job.id + "\n";
+
+        Field[] fields = job.getClass().getDeclaredFields();
+        ArrayList<String> fieldsList = new ArrayList<>();
+        String missingData = "Data not available";
+
+        for (Field f : fields) {
+            fieldsList.add(f.toString());
+            if (f.equals("")) {
+                fieldsList.remove(f.toString());
+                fieldsList.add(missingData);
+                continue;
+            }
+        }
+        String returnedJob = "\n" + "ID:" + fieldsList.get(0) + '\n' + "Name:" + fieldsList.get(2) + '\n' + "Employer:" + fieldsList.get(3) + '\n' + "Location" + fieldsList.get(4) + '\n' + "Position Type:" + fieldsList.get(5) + '\n' + "Core Competency:" + fieldsList.get(6) + "\n";
+
         return returnedJob;
     }
 

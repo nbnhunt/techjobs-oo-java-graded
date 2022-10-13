@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.oo;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -103,22 +104,53 @@ public class Job {
 
     public String toString(Job job) {
 
+        // Fine. I'll make a big loop.
+        String[] fieldsList = {"ID: ", "Name: ", "Employer: ", "Location: ", "Position Type: ", "Core Competency: "};
+        // Job.getClass() cannot be referenced from a static context
+        Field[] fields = Job.class.getDeclaredFields();
+        String missingData = "Data not available";
+        String returnedJob = "\n";
+        int index = 0;
+
+        // try->catch to review what is being submitted per field re: Ch 11.1 Exceptions...
+        // exceptions are thrown if a program attempts to set a value not allowed by me
+        // these are used to avoid runtime exceptions
+        // make sure it's a JobField
+        // return missing data if empty or null
+        // return data if not empty
+        // repeat the string returnedJob as needed per check
+        for (Field f : fields) {
+            if (f.getName() == "nextId") {
+            } else {
+                try {
+                    if (f.get(this) instanceof JobField) {
+                        if (((JobField) f.get(this)).getValue() == "") {
+                            returnedJob = returnedJob + fieldsList[index] + missingData + "\n";
+                        } else {
+                            returnedJob = returnedJob + fieldsList[index] + f.get(this) + "\n";
+                        }
+                    } else if (f.get(this) == null || f.get(this) == "") {
+                        returnedJob = returnedJob + fieldsList[index] + missingData + "\n";
+                    } else {
+                        returnedJob = returnedJob + fieldsList[index] + f.get(this) + "\n";
+                    }
+                    index++;
+                } catch (Exception e) {
+                    returnedJob = returnedJob + fieldsList[index] + missingData + "\n";
+                    index++;
+                }
+            }
+        }
+
+        return returnedJob;
+
+        /*
         Field[] fields = job.getClass().getDeclaredFields();
         ArrayList<String> fieldsList = new ArrayList<>();
         String missingData = "Data not available";
 
-        for (Field f : fields) {
-            fieldsList.add(f.toString());
-        }
+        // instanceof?
 
-        for (String c : fieldsList) {
-            if (c.equals("")) {
-                fieldsList.remove(c);
-                fieldsList.add(missingData);
-            }
-        }
-
-        /*
         for (Field f : fields) {
                 if (f.toString().equals("")) {
                     fieldsList.add(missingData);
@@ -127,11 +159,11 @@ public class Job {
                 }
             }
 
-         */
-
         String returnedJob = "\n" + "ID: " + fieldsList.get(0) + '\n' + "Name: " + fieldsList.get(2) + '\n' + "Employer: " + fieldsList.get(3) + '\n' + "Location: " + fieldsList.get(4) + '\n' + "Position Type: " + fieldsList.get(5) + '\n' + "Core Competency: " + fieldsList.get(6) + "\n";
 
         return returnedJob;
+
+         */
     }
 
 }

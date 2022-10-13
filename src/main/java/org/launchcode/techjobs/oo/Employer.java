@@ -2,21 +2,26 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
-public class Employer {
+public class Employer extends JobField {
 
-    private int id;
-    private static int nextId = 1;
-    private String value;
+    // private int id;
+    // private static int nextId = 1;
+    // private String value;
 
+    // 7.3. inheritance
+    // the super keyword allows the sublcass to access the constructor for the base class -> must be first line
     public Employer() {
-        id = nextId;
-        nextId++;
+        super();
+        //id = nextId;
+        //nextId++;
     }
 
-    public Employer(String aValue) {
-        this();
-        this.value = aValue;
+    public Employer(String value) {
+        super(value);
+        //this();
+        //this.value = aValue;
     }
+    /*
 
     // Custom toString, equals, and hashCode methods:
 
@@ -51,5 +56,7 @@ public class Employer {
     public void setValue(String value) {
         this.value = value;
     }
+
+     */
 
 }

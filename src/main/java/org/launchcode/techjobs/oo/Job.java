@@ -108,12 +108,26 @@ public class Job {
         String missingData = "Data not available";
 
         for (Field f : fields) {
+            fieldsList.add(f.toString());
+        }
+
+        for (String c : fieldsList) {
+            if (c.equals("")) {
+                fieldsList.remove(c);
+                fieldsList.add(missingData);
+            }
+        }
+
+        /*
+        for (Field f : fields) {
                 if (f.toString().equals("")) {
                     fieldsList.add(missingData);
                 } else {
                     fieldsList.add(f.toString());
                 }
             }
+
+         */
 
         String returnedJob = "\n" + "ID: " + fieldsList.get(0) + '\n' + "Name: " + fieldsList.get(2) + '\n' + "Employer: " + fieldsList.get(3) + '\n' + "Location: " + fieldsList.get(4) + '\n' + "Position Type: " + fieldsList.get(5) + '\n' + "Core Competency: " + fieldsList.get(6) + "\n";
 

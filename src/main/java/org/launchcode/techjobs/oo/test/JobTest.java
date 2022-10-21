@@ -61,8 +61,8 @@ public class JobTest {
     public void testToStringStartsAndEndsWithNewLine() {
         Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        assertEquals('\n', job6.toString(job6).charAt(0));
-        assertEquals('\n', job6.toString(job6).charAt(job6.toString(job6).length()-1));
+        assertEquals('\n', job6.toString().charAt(0));
+        assertEquals('\n', job6.toString().charAt(job6.toString().length()-1));
         //assertEquals(job6.toString().charAt(0), job6.toString().charAt(0));
     }
 
@@ -71,26 +71,26 @@ public class JobTest {
         Job job7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         // labels
-        assertTrue(job7.toString(job7).contains("ID"));
-        assertTrue(job7.toString(job7).contains("Name"));
-        assertTrue(job7.toString(job7).contains("Employer"));
-        assertTrue(job7.toString(job7).contains("Location"));
-        assertTrue(job7.toString(job7).contains("Position Type"));
-        assertTrue(job7.toString(job7).contains("Core Competency"));
+        assertTrue(job7.toString().contains("ID"));
+        assertTrue(job7.toString().contains("Name"));
+        assertTrue(job7.toString().contains("Employer"));
+        assertTrue(job7.toString().contains("Location"));
+        assertTrue(job7.toString().contains("Position Type"));
+        assertTrue(job7.toString().contains("Core Competency"));
 
         // data
-        assertTrue(job7.toString(job7).contains("Product tester"));
-        assertTrue(job7.toString(job7).contains("ACME"));
-        assertTrue(job7.toString(job7).contains("Desert"));
-        assertTrue(job7.toString(job7).contains("Quality control"));
-        assertTrue(job7.toString(job7).contains("Persistence"));
+        assertTrue(job7.toString().contains("Product tester"));
+        assertTrue(job7.toString().contains("ACME"));
+        assertTrue(job7.toString().contains("Desert"));
+        assertTrue(job7.toString().contains("Quality control"));
+        assertTrue(job7.toString().contains("Persistence"));
     }
 
     @Test
     public void testToStringHandlesEmptyField() {
         Job job8 = new Job("", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        assertTrue(job8.toString(job8).contains("Data not available"));
+        assertTrue(job8.toString().contains("Data not available"));
 
 
     }

@@ -21,3 +21,6 @@ public class Main {
     }
 
 }
+
+// the toString was for validating data, the loop was for the array of data
+// putting the for loop in the toString method was doing two things at the same time.
